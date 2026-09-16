@@ -29,7 +29,7 @@ const columns: { title: string; links: FooterLink[] }[] = [
 
 export function SiteFooter() {
   return (
-    <footer id="kontak" className="border-t border-border/60 bg-sand/50">
+    <footer id="kontak" className="scroll-mt-20 border-t border-border/60 bg-sand/50">
       <div className="mx-auto grid w-full max-w-6xl gap-12 px-6 py-16 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
           <p className="font-serif text-2xl leading-none tracking-[0.35em] text-foreground">

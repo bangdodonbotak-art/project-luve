@@ -40,7 +40,10 @@ const perfumes: Perfume[] = [
 
 export function PerfumeCollection() {
   return (
-    <section id="koleksi" className="mx-auto w-full max-w-6xl px-6 py-24">
+    <section
+      id="koleksi"
+      className="mx-auto w-full max-w-6xl scroll-mt-20 px-6 py-24"
+    >
       <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-[11px] uppercase tracking-[0.42em] text-champagne-deep">
@@ -62,7 +65,7 @@ export function PerfumeCollection() {
             key={perfume.name}
             initial={{ opacity: 0, y: 32 }}
             whileInView={{ opacity: 1, y: 0 }}
-            whileHover={{ y: -6 }}
+            whileHover={{ y: -6, transition: { duration: 0.3, ease } }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{
               duration: 0.8,

@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { BottleVisual } from "@/components/bottle-visual";
 import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -84,7 +83,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.1, ease }}
-          className={cn("relative mx-auto h-[420px] w-full max-w-sm")}
+          className="relative mx-auto h-[420px] w-full max-w-sm"
         >
           <div aria-hidden="true" className="absolute inset-0 rounded-full bg-champagne/25 blur-3xl" />
           <BottleVisual variant="tall" className="relative drop-shadow-2xl" />

@@ -13,7 +13,7 @@ const milestones = [
 
 export function BrandStory() {
   return (
-    <section id="cerita" className="border-y border-border/60 bg-sand/60">
+    <section id="cerita" className="scroll-mt-20 border-y border-border/60 bg-sand/60">
       <div className="mx-auto grid w-full max-w-6xl items-center gap-16 px-6 py-24 lg:grid-cols-[0.9fr_1.1fr]">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
