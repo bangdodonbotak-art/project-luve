@@ -1,4 +1,6 @@
-const columns = [
+type FooterLink = { label: string; href?: string };
+
+const columns: { title: string; links: FooterLink[] }[] = [
   {
     title: "Koleksi",
     links: [
@@ -11,15 +13,15 @@ const columns = [
     title: "Perusahaan",
     links: [
       { label: "Tentang LUVE", href: "#cerita" },
-      { label: "Jurnal", href: "#" },
-      { label: "Karier", href: "#" },
+      { label: "Jurnal" },
+      { label: "Karier" },
     ],
   },
   {
     title: "Bantuan",
     links: [
-      { label: "Pengiriman", href: "#" },
-      { label: "Pengembalian", href: "#" },
+      { label: "Pengiriman" },
+      { label: "Pengembalian" },
       { label: "Hubungi Kami", href: "#kontak" },
     ],
   },
@@ -47,12 +49,21 @@ export function SiteFooter() {
             <ul className="mt-5 space-y-3">
               {column.links.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                  >
-                    {link.label}
-                  </a>
+                  {link.href ? (
+                    <a
+                      href={link.href}
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <span
+                      className="text-sm text-muted-foreground/60"
+                      aria-disabled="true"
+                    >
+                      {link.label}
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>
