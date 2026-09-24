@@ -1,94 +1,113 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { BottleVisual } from "@/components/bottle-visual";
-import { buttonVariants } from "@/components/ui/button";
+import Image from "next/image";
+import { motion, type Variants } from "framer-motion";
+import { siteContent } from "@/data/site-content";
 
-const ease = [0.22, 1, 0.36, 1] as const;
+const { hero, images } = siteContent;
 
-const fade = {
+const container: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.14, delayChildren: 0.35 } },
+};
+const item: Variants = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
+  },
 };
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden">
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 top-0 h-[560px] bg-gradient-to-b from-sand to-transparent"
+    <section
+      id="top"
+      className="relative flex min-h-dvh w-full items-center justify-center overflow-hidden"
+    >
+      {/* Poster/fallback foto — portrait di HP, landscape di desktop (fit to screen). */}
+      <Image
+        src={images.portrait}
+        alt=""
+        fill
+        priority
+        sizes="(min-width: 768px) 0px, 100vw"
+        className="absolute inset-0 size-full object-cover md:hidden"
+      />
+      <Image
+        src={images.landscape}
+        alt=""
+        fill
+        priority
+        sizes="(max-width: 767px) 0px, 100vw"
+        className="absolute inset-0 hidden size-full object-cover md:block"
       />
 
-      <div className="relative mx-auto grid w-full max-w-6xl items-center gap-16 px-6 pt-20 pb-24 lg:grid-cols-[1.05fr_0.95fr] lg:pt-28">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          transition={{ staggerChildren: 0.12 }}
-          className="flex flex-col items-start gap-7"
+      {/* Video latar — source portrait untuk layar kecil, landscape untuk besar. */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+        className="absolute inset-0 size-full object-cover"
+      >
+        <source media="(max-width: 767px)" srcSet={images.videoPortrait} />
+        <source srcSet={images.videoLandscape} />
+      </video>
+
+      {/* Overlay gradasi agar teks tetap kontras. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black"
+      />
+
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="relative z-10 mx-auto w-full max-w-5xl px-5 pt-24 pb-28 text-center sm:px-8"
+      >
+        <motion.p
+          variants={item}
+          className="font-display text-xs font-medium tracking-[0.34em] text-gold uppercase sm:text-sm"
         >
-          <motion.p
-            variants={fade}
-            transition={{ duration: 0.9, ease }}
-            className="text-[11px] uppercase tracking-[0.42em] text-champagne-deep"
-          >
-            Eau de Parfum — Racikan 2026
-          </motion.p>
+          {hero.eyebrow}
+        </motion.p>
 
-          <motion.h1
-            variants={fade}
-            transition={{ duration: 0.9, ease }}
-            className="font-serif text-5xl leading-[1.05] text-foreground sm:text-6xl lg:text-7xl"
-          >
-            Elegansi yang
-            <span className="block italic text-champagne-deep">tinggal di kulit.</span>
-          </motion.h1>
+        <motion.h1
+          variants={item}
+          className="mt-8 font-display text-6xl leading-none font-medium tracking-[0.16em] text-ivory uppercase sm:text-8xl"
+        >
+          {hero.brand}
+        </motion.h1>
 
-          <motion.p
-            variants={fade}
-            transition={{ duration: 0.9, ease }}
-            className="max-w-md text-base leading-relaxed text-muted-foreground"
-          >
-            LUVE meracik setiap komposisi perlahan — dari bunga yang dipetik sebelum
-            fajar, sampai kehangatan yang tertinggal berjam-jam kemudian.
-          </motion.p>
-
-          <motion.div
-            variants={fade}
-            transition={{ duration: 0.9, ease }}
-            className="flex flex-wrap items-center gap-3"
-          >
-            <a
-              href="#koleksi"
-              className={buttonVariants({
-                size: "lg",
-                className: "px-7 text-[11px] uppercase tracking-[0.2em]",
-              })}
-            >
-              Jelajahi Koleksi
-            </a>
-            <a
-              href="#cerita"
-              className={buttonVariants({
-                variant: "ghost",
-                size: "lg",
-                className: "text-[11px] uppercase tracking-[0.2em]",
-              })}
-            >
-              Kenali Filosofi
-            </a>
-          </motion.div>
-        </motion.div>
+        <motion.p
+          variants={item}
+          className="mx-auto mt-8 max-w-md font-display text-sm leading-relaxed tracking-[0.26em] break-words text-ivory/65 uppercase sm:text-base"
+        >
+          {hero.tagline}
+        </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.94 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.1, ease }}
-          className="relative mx-auto h-[420px] w-full max-w-sm"
+          variants={item}
+          className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
-          <div aria-hidden="true" className="absolute inset-0 rounded-full bg-champagne/25 blur-3xl" />
-          <BottleVisual variant="tall" className="relative drop-shadow-2xl" />
+          <a
+            href={hero.primaryCta.href}
+            className="inline-flex min-h-12 w-full max-w-xs items-center justify-center bg-gold px-8 py-3.5 text-sm tracking-[0.22em] text-black uppercase transition-colors duration-200 hover:bg-gold-deep sm:w-auto"
+          >
+            {hero.primaryCta.label}
+          </a>
+          <a
+            href={hero.secondaryCta.href}
+            className="inline-flex min-h-12 w-full max-w-xs items-center justify-center border border-ivory/35 px-8 py-3.5 text-sm tracking-[0.22em] text-ivory/85 uppercase transition-colors duration-200 hover:border-gold hover:text-gold sm:w-auto"
+          >
+            {hero.secondaryCta.label}
+          </a>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

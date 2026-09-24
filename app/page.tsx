@@ -1,19 +1,25 @@
-import { BrandStory } from "@/components/brand-story";
 import { Hero } from "@/components/hero";
-import { PerfumeCollection } from "@/components/perfume-collection";
-import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { VideoSequence } from "@/components/video-sequence";
+import { IntroSection } from "@/components/intro-section";
+import { ExperienceSection } from "@/components/experience-section";
+import { NotesSection } from "@/components/notes-section";
+import { JourneySection } from "@/components/journey-section";
+import { MediaBand } from "@/components/media-band";
+import { UnisexSection } from "@/components/unisex-section";
+import { SignatureSection } from "@/components/signature-section";
 
 export default function Home() {
   return (
     <>
-      <SiteHeader />
-      <main className="flex flex-1 flex-col">
-        <Hero />
-        <PerfumeCollection />
-        <BrandStory />
-      </main>
-      <SiteFooter />
+      <Hero />
+      <VideoSequence />
+      <IntroSection />
+      <ExperienceSection />
+      <NotesSection />
+      <JourneySection />
+      <MediaBand />
+      <UnisexSection />
+      <SignatureSection />
     </>
   );
 }

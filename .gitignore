@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# claude code local config (bisa berisi token/API key)
+.claude/
+.agents/
+.21st/
+
+# database internal plugin, bukan bagian website
+data/state_store.db/

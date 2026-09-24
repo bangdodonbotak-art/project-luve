@@ -1,53 +1,73 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Cinzel, Pinyon_Script, Tenor_Sans } from "next/font/google";
 import "./globals.css";
 import { MotionProvider } from "@/components/motion-provider";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { siteContent } from "@/data/site-content";
 import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-serif",
+/*
+  Sistem tipografi LUVE:
+  - Display : Cinzel       -> judul, wordmark, tagline hero, label kapital (tracking lebar)
+  - Script  : Pinyon Script -> aksen tulisan tangan, huruf biasa saja, ukuran besar (lihat .text-script)
+  - Body    : Tenor Sans   -> paragraf, menu, chip, tombol
+*/
+const cinzel = Cinzel({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
+  style: ["normal"],
+  display: "swap",
+  variable: "--font-display",
+});
+
+const pinyonScript = Pinyon_Script({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-script",
+});
+
+const tenorSans = Tenor_Sans({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-body",
 });
 
 export const metadata: Metadata = {
-  title: "LUVE — Parfum Premium",
-  description:
-    "LUVE menghadirkan parfum premium dengan komposisi olfaktori yang diracik perlahan. Elegansi yang tinggal di kulit.",
-  keywords: [
-    "parfum premium",
-    "eau de parfum",
-    "LUVE",
-    "parfum lokal",
-    "Bandung",
-  ],
+  title: siteContent.meta.title,
+  description: siteContent.meta.description,
   openGraph: {
     type: "website",
-    locale: "id_ID",
     siteName: "LUVE",
-    title: "LUVE — Parfum Premium",
-    description:
-      "Elegansi yang tinggal di kulit. Diracik perlahan di Bandung dari bahan baku Grasse dan Nusantara.",
+    title: siteContent.meta.title,
+    description: siteContent.meta.description,
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html
-      lang="id"
+      lang="en"
       className={cn(
-        "h-full",
-        "antialiased",
-        inter.variable,
-        cormorant.variable,
-        "font-sans",
+        "dark h-full",
+        "font-body antialiased",
+        cinzel.variable,
+        pinyonScript.variable,
+        tenorSans.variable,
       )}
     >
-      <body className="flex min-h-full flex-col">
-        <MotionProvider>{children}</MotionProvider>
+      <body className="flex min-h-full flex-col overflow-x-clip">
+        <MotionProvider>
+          <SiteHeader />
+          <main className="flex flex-1 flex-col">{children}</main>
+          <SiteFooter />
+        </MotionProvider>
       </body>
     </html>
   );
