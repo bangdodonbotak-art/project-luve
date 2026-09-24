@@ -23,6 +23,7 @@ export const siteContent = {
     videoLandscape: "/luve_video_landscape.mp4", // video 16:9
     videoPortrait: "/luve_video_potrait.mp4", // video 9:16
     unisexVideo: "/luve_video_landscape_004.mp4", // video 16:9 untuk section unisex
+    music: "/luve_music.mp3", // musik latar (loop, tanpa autoplay)
   },
 
   videoSequence: {

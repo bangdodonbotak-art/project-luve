@@ -4,6 +4,8 @@ import "./globals.css";
 import { MotionProvider } from "@/components/motion-provider";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import { MusicPlayer } from "@/components/music-player";
+import { VideoSoundToggle } from "@/components/video-sound-toggle";
 import { siteContent } from "@/data/site-content";
 import { cn } from "@/lib/utils";
 
@@ -75,6 +77,8 @@ export default function RootLayout({
           <SiteHeader />
           <main className="flex flex-1 flex-col">{children}</main>
           <SiteFooter />
+          <MusicPlayer />
+          <VideoSoundToggle />
         </MotionProvider>
       </body>
     </html>
