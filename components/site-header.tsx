@@ -7,6 +7,7 @@ import {
   useMotionValueEvent,
   useScroll,
 } from "framer-motion";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { siteContent } from "@/data/site-content";
 import { cn } from "@/lib/utils";
@@ -39,11 +40,15 @@ export function SiteHeader() {
       )}
     >
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 sm:px-8">
-        <a
-          href="#top"
-          className="font-display text-xl font-medium tracking-[0.32em] text-ivory uppercase"
-        >
-          {brand}
+        <a href="#top" aria-label={brand} className="inline-flex items-center">
+          <Image
+            src="/luve_logo.png"
+            alt={brand}
+            width={40}
+            height={40}
+            priority
+            className="h-8 w-8 object-contain sm:h-10 sm:w-10"
+          />
         </a>
 
         {/* Desktop nav */}
