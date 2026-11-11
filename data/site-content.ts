@@ -3,7 +3,7 @@
 
 export const siteContent = {
   meta: {
-    title: "LUVE Eau de Parfum · Unisex",
+    title: "LUVE Eau de Parfum Unisex — More Than a Fragrance",
     description:
       "LUVE is an exquisite unisex Eau de Parfum that brings together vibrant fruits, delicate florals, precious woods, amber and musk.",
   },

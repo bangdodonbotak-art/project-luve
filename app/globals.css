@@ -99,6 +99,15 @@
   * {
     @apply border-border outline-ring/50;
   }
+  /*
+    Focus ring terlihat: tanpa ini, elemen yang difokuskan keyboard tidak punya
+    outline sama sekali (terverifikasi: outline-style computed "none"). Emas LUVE,
+    offset 3px, hanya saat navigasi keyboard (:focus-visible).
+  */
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
   body {
     @apply bg-background text-foreground;
     /* Tenor Sans hanya punya bobot 400 — jangan biarkan browser memalsukan bold. */

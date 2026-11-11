@@ -23,12 +23,12 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-dvh w-full items-center justify-center overflow-hidden"
+      className="relative flex min-h-dvh w-full flex-col items-center justify-start overflow-hidden"
     >
       {/* Poster/fallback foto — portrait di HP, landscape di desktop (fit to screen). */}
       <Image
         src={images.portrait}
-        alt=""
+        alt="Botol LUVE Eau de Parfum di antara bergamot, blackcurrant, melati, dan kayu hangat"
         fill
         priority
         sizes="(min-width: 768px) 0px, 100vw"
@@ -36,7 +36,7 @@ export function Hero() {
       />
       <Image
         src={images.landscape}
-        alt=""
+        alt="Botol LUVE Eau de Parfum di antara bergamot, blackcurrant, melati, dan kayu hangat"
         fill
         priority
         sizes="(max-width: 767px) 0px, 100vw"
@@ -60,14 +60,23 @@ export function Hero() {
       {/* Overlay gradasi agar teks tetap kontras. */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/35 to-black"
+        className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/55 to-black"
+      />
+
+      {/* Scrim lokal di belakang blok teks: tanpa ini, huruf ivory/gold tenggelam
+          di area gambar yang terang (bergamot, bunga melati, amber). Botolnya tinggi
+          dan tepat di tengah, jadi scrim harus menutup zona teks sampai ~70% hero —
+          bukan cuma lingkaran kecil di tengah. */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 h-[72%] bg-[radial-gradient(ellipse_72%_62%_at_50%_30%,rgba(0,0,0,0.8),rgba(0,0,0,0.5)_55%,rgba(0,0,0,0.18)_78%,transparent_92%)]"
       />
 
       <motion.div
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative z-10 mx-auto w-full max-w-5xl px-5 pt-24 pb-28 text-center sm:px-8"
+        className="relative z-10 mx-auto w-full max-w-5xl px-5 pt-24 pb-16 text-center sm:px-8 md:pt-28"
       >
         <motion.p
           variants={item}
@@ -78,21 +87,21 @@ export function Hero() {
 
         <motion.h1
           variants={item}
-          className="mt-8 font-display text-6xl leading-none font-medium tracking-[0.16em] text-ivory uppercase sm:text-8xl"
+          className="mt-6 font-display text-6xl leading-none font-medium tracking-[0.16em] text-ivory uppercase sm:text-7xl lg:text-8xl"
         >
           {hero.brand}
         </motion.h1>
 
         <motion.p
           variants={item}
-          className="mx-auto mt-8 max-w-md font-display text-sm leading-relaxed tracking-[0.26em] break-words text-ivory/65 uppercase sm:text-base"
+          className="mx-auto mt-6 max-w-xl font-display text-sm leading-relaxed tracking-[0.26em] break-words text-ivory/80 uppercase sm:text-base"
         >
           {hero.tagline}
         </motion.p>
 
         <motion.div
           variants={item}
-          className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
+          className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <a
             href={hero.primaryCta.href}

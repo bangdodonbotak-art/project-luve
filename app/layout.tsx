@@ -7,6 +7,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { MusicPlayer } from "@/components/music-player";
 import { VideoSoundToggle } from "@/components/video-sound-toggle";
 import { siteContent } from "@/data/site-content";
+import { ProductJsonLd } from "@/components/product-json-ld";
 import { cn } from "@/lib/utils";
 
 /*
@@ -38,8 +39,12 @@ const tenorSans = Tenor_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.luve.my.id"),
   title: siteContent.meta.title,
   description: siteContent.meta.description,
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [
       { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
@@ -50,9 +55,24 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
+    url: "https://www.luve.my.id/",
     siteName: "LUVE",
     title: siteContent.meta.title,
     description: siteContent.meta.description,
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "LUVE Eau de Parfum — More than a fragrance, it's a feeling.",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteContent.meta.title,
+    description: siteContent.meta.description,
+    images: ["/og-image.jpg"],
   },
 };
 
@@ -73,6 +93,7 @@ export default function RootLayout({
       )}
     >
       <body className="flex min-h-full flex-col overflow-x-clip">
+        <ProductJsonLd />
         <MotionProvider>
           <SiteHeader />
           <main className="flex flex-1 flex-col">{children}</main>
