@@ -162,11 +162,11 @@ export const siteContent = {
   // Isi sendiri: belum ada datanya.
   product: {
     size: "", // contoh: "50 ml"
-    price: "", // contoh: "Rp 0"
+    price: "$499",
   },
 
   contact: {
-    whatsapp: "", // format: 628xxxxxxxxxx (tanpa + dan spasi)
+    whatsapp: "6281314565000", // format: 628xxxxxxxxxx (tanpa + dan spasi)
     whatsappMessage: "Hello, I'd like to order LUVE Eau de Parfum.",
     email: "",
     instagram: "",

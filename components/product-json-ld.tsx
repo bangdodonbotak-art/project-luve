@@ -11,6 +11,8 @@ export function ProductJsonLd() {
   const { meta, signature, product, images } = siteContent;
   const digits = product.price.replace(/\D/g, "");
   const price = digits ? Number(digits) : null;
+  // Mata uang dari string harga: "$499" -> USD, "Rp 450.000" -> IDR.
+  const priceCurrency = product.price.includes("$") ? "USD" : "IDR";
 
   const data: Record<string, unknown> = {
     "@context": "https://schema.org",
@@ -24,7 +26,7 @@ export function ProductJsonLd() {
     data.offers = {
       "@type": "Offer",
       url: SITE_URL,
-      priceCurrency: "IDR",
+      priceCurrency,
       price,
       availability: "https://schema.org/InStock",
     };
